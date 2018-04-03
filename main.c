@@ -26,6 +26,7 @@ int vm_score = 0;
 void number_of_cores();
 void run_command();
 void registry_check();
+void is_debugger();
 
 int main(int argc, const char * argv[]) {
     /*run number_of_cores() function first, 
@@ -71,6 +72,8 @@ int main(int argc, const char * argv[]) {
 
     printf("Virtual Machine detected.");
 #endif
+
+	is_debugger();
     return 0;
 }
 
@@ -102,7 +105,15 @@ void number_of_cores() {
 #endif
 } //end of number_of_cores()
 
-
+void is_debugger() {
+#ifdef WIN32
+	if(IsDebuggerPresent()) {
+		printf("Running inside debugger\n");
+	} else {
+		printf("Not running inside debugger\n");
+	}
+#endif
+}
 /* run_command serves the purposes of running terminal commands
    within both linux and windows environments.
    We use this for dmesg, dmidecode, and systeminfo.
