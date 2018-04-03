@@ -173,7 +173,7 @@ void registry_check(){
     char *buffer;
     int i=0,j=0;
     int size = 256;
-    char *vm_name = "vmware";
+    char *vm_names[] = {"vmware", "vbox", NULL};
     buffer = (char *) malloc(sizeof(char) * size);
 
     /* Use RegOpenKeyEx and RegQueryValueEx, as described in the 
@@ -189,9 +189,12 @@ void registry_check(){
         i++;
     }
 
-    //compare the buffer and "vmware" to see if they are the same.
-    if(strstr(buffer, vm_name) != NULL){
-        vm_score++; //if buffer and "vmware" are equal, increase vm_score
+    for(char **a = vm_names; *a != NULL; a++) {
+        if(strstr(buffer, *a) != NULL){
+            vm_score++; //if buffer and a are equal, increase vm_score
+	} else {
+	    printf("Found reg value: %s\n", buffer);
+	}
     }
 
     return;
