@@ -52,9 +52,10 @@ int main(int argc, const char * argv[]) {
     
     /*If vm_score is less than 3, we are likely running on physical hardware*/
     if(vm_score < 3){
-      printf("no virtual machine detected");
+      printf("no virtual machine detected\n");
+    } else {
+      printf("Virtual Machine detected.\n");
     }
-    printf("Virtual Machine detected.");
 	   
 //The code below only runs if we are not on a Windows-based system. Only tested with openSUSE.
 #else
@@ -67,10 +68,10 @@ int main(int argc, const char * argv[]) {
     
     /*If vm_score is less than 3, we are likely running on physical hardware*/
     if(vm_score < 3){
-      printf("No virtual machine detected");
+      printf("No virtual machine detected\n");
+    } else {
+      printf("Virtual Machine detected.");
     }
-
-    printf("Virtual Machine detected.");
 #endif
 
 	is_debugger();
@@ -142,7 +143,7 @@ void run_command(char *cmd, char *detphrase, int dp_length){
     is null, the command didn't work.
     */
     if((fp = popen(cmd, "r")) == NULL){
-        printf("Error");
+        printf("Error\n");
     }
 
     
