@@ -95,6 +95,7 @@ void number_of_cores() {
     if(sysinf.dwNumberOfProcessors<=1){
         vm_score++;
     }
+	printf("Number of CPUs: %d\n", sysinf.dwNumberOfProcessors);
 //Not windows? Run Unix code
 #else
     //run sysconf function outlined in the man pages.
