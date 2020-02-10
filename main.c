@@ -196,9 +196,9 @@ void registry_check(){
     for(char **a = vm_names; *a != NULL; a++) {
         if(strstr(buffer, *a) != NULL){
             vm_score++; //if buffer and a are equal, increase vm_score
-	} else {
-	    printf("Found reg value: %s\n", buffer);
-	}
+        /*} else {
+            printf("Found reg value: %s\n", buffer);*/
+        }
     }
 
     return;
