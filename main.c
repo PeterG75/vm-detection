@@ -27,12 +27,16 @@ void number_of_cores();
 void run_command();
 void registry_check();
 void is_debugger();
+unsigned int cpuid_test();
 
 int main(int argc, const char * argv[]) {
     /*run number_of_cores() function first, 
     as it runs on both windows and unix machines.
     */
     number_of_cores();
+
+    // Check the CPUID flag, and bump the score if it is set
+    vm_score += cpuid_test() * 3;
     
 //check to see if running on windows.
 #ifdef WIN32
@@ -204,3 +208,17 @@ void registry_check(){
     return;
 }
 #endif
+
+unsigned int cpuid_test(void) {
+    unsigned int c;
+    asm("xorl %%eax,%%eax;"
+        "inc %%eax;"
+        "cpuid;"
+        "andl $0x80000000, %%ecx;"
+        "movl %%ecx, %0;"
+    : "=r"(c)
+    :
+    : "%eax", "%ecx", "%edx" ,"%ebx");
+    printf("CPUID Flag: %d\n", (c >> 31));
+    return c >> 31;
+}
