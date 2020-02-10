@@ -39,6 +39,7 @@ int main(int argc, const char * argv[]) {
     /*vmware_sys holds the value that the systeminfo command should return for
     the System Manufacturer value. */
     char* vmware_sys = "System Manufacturer: \t VMware, Inc.";
+    char* vbox_sys =   "System Manufacturer: \t innotek GmbH";
     
     /*Use the run_command function we created in order to run systeminfo piped
     to find the System Manufacturer, and compare it with the vmware_sys variable,
@@ -46,6 +47,7 @@ int main(int argc, const char * argv[]) {
     last parameter allows us to dictate that the string should be 36 characters long.
     */
     run_command("systeminfo | find \"System Manufacturer\"", vmware_sys, 36);
+    run_command("systeminfo | find \"System Manufacturer\"", vbox_sys, 36);
     
     //run the registry_check() function to check for vmware in the registers.
     registry_check();
