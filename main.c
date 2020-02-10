@@ -76,7 +76,7 @@ int main(int argc, const char * argv[]) {
     if(vm_score < 3){
       printf("No virtual machine detected\n");
     } else {
-      printf("Virtual Machine detected.");
+      printf("Virtual Machine detected.\n");
     }
 #endif
 
